@@ -1,7 +1,5 @@
 #!/bin/python3
 # https://www.hackerrank.com/challenges/a-very-big-sum/problem
-import os
-
 #
 # Complete the 'aVeryBigSum' function below.
 #
@@ -12,17 +10,3 @@ import os
 
 def aVeryBigSum(ar):
     return sum(ar)
-
-
-if __name__ == "__main__":
-    fptr = open(os.environ["OUTPUT_PATH"], "w")
-
-    ar_count = int(input().strip())
-
-    ar = list(map(int, input().rstrip().split()))
-
-    result = aVeryBigSum(ar)
-
-    fptr.write(str(result) + "\n")
-
-    fptr.close()
