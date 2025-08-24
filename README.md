@@ -1,7 +1,6 @@
-
 # coding-challenges
 
-本專案用來統整並管理我在 LeetCode 與 HackerRank 的解題紀錄，同時藉由實作流程學習測試與 CI/CD 實務；更重要的是，透過持續練習來鍛鍊思考與問題解析能力。
+本專案用來統整並管理我在 LeetCode 與 HackerRank 的解題紀錄，同時藉由實作流程學習測試與 CI/CD 實務；更重要的是，透過持續練習來鍛鍊思考與解決問題能力。
 
 This project consolidates and manages my LeetCode and HackerRank solutions while giving me hands-on practice with testing and CI/CD workflows. More importantly, the continual practice sharpens my reasoning and problem-solving skills.
 
@@ -12,9 +11,12 @@ This project consolidates and manages my LeetCode and HackerRank solutions while
 ```text
 coding-challenges/
 ├─ HackerRank/
-│  └─ python/algorithms/warm-up/
+│  ├─ python/algorithms/warm-up/
+│  │   ├─ __init__.py
+│  │   └─ a_very_big_sum.py          # Solution
+│  └─ sql/basic_select/
 │      ├─ __init__.py
-│      └─ a_very_big_sum.py          # Solution
+│      └─ weather_observation_station_06.sql  # MSSQL Solution
 ├─ LeetCode/
 │  └─ python/
 │      ├─ __init__.py
@@ -22,7 +24,7 @@ coding-challenges/
 ├─ tests/                            # 由 scripts/sync_tests.py 自動鏡像
 │  └─ HackerRank/python/algorithms/warm-up/
 │      └─ test_a_very_big_sum.py
-├─ scripts/                          
+├─ scripts/
 │  ├─ sync_tests.py                  # 補 tests/ 鏡像 + __init__.py
 │  └─ gen_test_stub.py               # 產生 pytest 雛形
 ├─ .github/workflows/ci.yml          # lint / mypy / pytest
@@ -33,19 +35,21 @@ coding-challenges/
 
 ---
 
-## 🔖 Naming Rules
+### 🔖 Naming Rules
 
-| Platform              | Path / Filename Pattern                 | Example                               |
-| --------------------- | --------------------------------------- | ------------------------------------- |
-| **HackerRank**        | `<track>/<category>/slug.py` | `algorithms/warm-up/a_very_big_sum.py` |
-| **LeetCode (Python)** | `_####_<slug>.py`                       | `_1_two_sum.py`                    |
-| **LeetCode (SQL)**    | `_####_<slug>.sql`                      | `_175_combine_two_tables.sql`        |
+| Platform                | Path / Filename Pattern      | Example                                           |
+| ----------------------- | ---------------------------- | ------------------------------------------------- |
+| **HackerRank (Python)** | `<track>/<category>/slug.py` | `algorithms/warm-up/a_very_big_sum.py`            |
+| **HackerRank (MSSQL)**  | `<category>/slug.sql`        | `basic_select/weather_observation_station_06.sql` |
+| **LeetCode (Python)**   | `_####_<slug>.py`            | `_1_two_sum.py`                                   |
+| **LeetCode (MSSQL)**    | `_####_<slug>.sql`           | `_175_combine_two_tables.sql`                     |
 
-> 每層資料夾都含 `__init__.py`，IDE / mypy / pytest 才能正確 import。
+> Python 資料夾每層都含 `__init__.py`，IDE / mypy / pytest 才能正確 import。
+> SQL 資料夾可選擇性加 `__init__.py`，但非必要。
 
 ---
 
-## ⚙️ Local Dev Workflow
+### ⚙️ Local Dev Workflow
 
 ```powershell
 # 1⃣  Python 3.11 venv
@@ -66,11 +70,11 @@ pytest -q
 
 ```
 
-**常見錯誤**
+### 常見錯誤
 
-| 訊息                                      | 解法                                                                |
-| --------------------------------------- | ----------------------------------------------------------------- |
-| `ERROR: file or directory not found: #` | - 刪除 `pytest.ini` 行尾註解<br>- 或 `Remove-Item Env:PYTEST_ADDOPTS`    |
+| 訊息                                    | 解法                                                                       |
+| --------------------------------------- | -------------------------------------------------------------------------- |
+| `ERROR: file or directory not found: #` | - 刪除 `pytest.ini` 行尾註解  <br>  - 或 `Remove-Item Env:PYTEST_ADDOPTS`      |
 | `Duplicate module "python"`             | 在 `HackerRank/`、`LeetCode/` 加 `__init__.py`（`sync_tests.py` 會自動補） |
 | `Need type annotation …`                | 為可變容器加型別：<br>`num_to_idx: dict[int, int] = {}`                    |
 
@@ -86,14 +90,3 @@ pytest -q
 # ❹  ruff / black / mypy / pytest
 # ❺  git add . && git commit -m "feat: add <slug>" && git push
 ```
-
-Push 後 GitHub Actions 會自動跑 lint → mypy → pytest，綠燈即可合併。
-
----
-
-## 🚀 Roadmap
-
-* [ ] Dockerfile ＋ GHCR workflow
-
-任何建議／PR／Issue 歡迎提出！
-
