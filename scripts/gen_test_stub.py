@@ -2,6 +2,7 @@
 """
 簡易 Scaffold：python scripts/gen_test_stub.py <src_path> <call_expr> <expected>
 """
+
 import sys
 import textwrap
 from pathlib import Path
@@ -20,7 +21,7 @@ def main():
     test_code = textwrap.dedent(
         f"""
         import pytest
-        from {src_path.with_suffix('').as_posix().replace('/', '.')} import {src_path.stem}
+        from {src_path.with_suffix("").as_posix().replace("/", ".")} import {src_path.stem}
 
         @pytest.mark.skip(\"\"\"TODO: 驗證 Sample 與邊界值\"\"\")
         def test_sample():

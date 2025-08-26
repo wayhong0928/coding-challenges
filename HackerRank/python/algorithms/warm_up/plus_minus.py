@@ -16,4 +16,4 @@ def plusMinus(arr):
 
     print(f"{positive / n:.6f}")
     print(f"{negative / n:.6f}")
-    print(f"{zero     / n:.6f}")
+    print(f"{zero / n:.6f}")

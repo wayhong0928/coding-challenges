@@ -54,24 +54,14 @@ jobs:
       - name: Ruff (lint)
         run: ruff check .
 
-      - name: Black (format check)
-        run: black --check .
-        # 若想減少工具重疊，可改用 `ruff format --check .` 取代 Black（擇一）
+      - name: Ruff (format check)
+        run: ruff format --check .
+        # 已用 ruff 同時做 lint + format 檢查，減少工具重疊；若要改回 Black，請回復此處
 
       # --- Type check：軟性（不阻斷） ---
       - name: Mypy (soft check)
         run: mypy HackerRank LeetCode || true
         # 若想嚴格一點，把 `|| true` 拿掉即可
-
-      # --- SQL lint：非阻斷（有裝 sqlfluff 才執行成功） ---
-      - name: SQLFluff lint (tsql, non-blocking)
-        continue-on-error: true
-        run: |
-          pip install sqlfluff
-          sqlfluff --version
-          # 只做 lint，不 auto-fix，避免改動你的解題檔案
-          sqlfluff lint --dialect tsql .
-        # 若未使用 MSSQL，請改 dialect（postgres/mysql/ansi…）或先移除此步驟
 
       # --- Tests：正常阻斷，但保持精簡輸出 ---
       - name: Run tests
