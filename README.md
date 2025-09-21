@@ -45,7 +45,6 @@ coding-challenges/
 | **LeetCode (MSSQL)**    | `_####_<slug>.sql`           | `_175_combine_two_tables.sql`                     |
 
 > Python 資料夾每層都含 `__init__.py`，IDE / mypy / pytest 才能正確 import。
-> SQL 資料夾可選擇性加 `__init__.py`，但非必要。
 
 ---
 
