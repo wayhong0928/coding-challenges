@@ -79,6 +79,19 @@ pytest -q
 
 > 註：本專案目前不對 SQL 檔做自動 lint 或測試；僅保留解題紀錄。如將來要加入 SQL 測試或 lint，可在 CI 中另行設定。
 
+### 關閉程式碼提示
+
+若要在 VS Code 中關閉 Copilot 與內嵌提示，請在 `.vscode/settings.json` 中加入：
+
+```json
+{
+  "github.copilot.nextEditSuggestions.enabled": false,
+  "editor.inlineSuggest.enabled": false
+}
+```
+
+> 提示：本專案已安裝 [LeetCode 套件](https://marketplace.visualstudio.com/items?itemName=LeetCode.vscode-leetcode)，可直接在 VS Code 中瀏覽並解決 LeetCode 題目。
+
 ---
 
 ## ➕ Adding a New Problem
