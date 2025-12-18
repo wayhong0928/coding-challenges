@@ -69,14 +69,6 @@ pytest -q
 
 ```
 
-### 常見錯誤
-
-| 訊息                                    | 解法                                                                       |
-| --------------------------------------- | -------------------------------------------------------------------------- |
-| `ERROR: file or directory not found: #` | 刪除 `pytest.ini` 行尾註解，或執行 `Remove-Item Env:PYTEST_ADDOPTS`        |
-| `Duplicate module "python"`             | 在 `HackerRank/`、`LeetCode/` 加 `__init__.py`（`sync_tests.py` 會自動補） |
-| `Need type annotation …`                | 為可變容器加型別，例如 `num_to_idx: dict[int, int] = {}`                   |
-
 > 註：本專案目前不對 SQL 檔做自動 lint 或測試；僅保留解題紀錄。如將來要加入 SQL 測試或 lint，可在 CI 中另行設定。
 
 ### 關閉程式碼提示

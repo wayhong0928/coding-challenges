@@ -1,11 +1,5 @@
 import pytest
 from typing import List
-import sys
-from pathlib import Path
-
-# This is needed so that the local LeetCode package can be found
-sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
-
 from LeetCode.python._49_group_anagrams import Solution
 
 
@@ -15,9 +9,6 @@ def _normalize(groups: List[List[str]]) -> set[tuple[str, ...]]:
     - Use a set of tuples so group order doesn't matter
     """
     return {tuple(sorted(g)) for g in groups}
-
-
-Solution = Solution
 
 
 @pytest.mark.parametrize(
